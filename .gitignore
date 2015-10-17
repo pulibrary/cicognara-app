@@ -1,5 +1,9 @@
-# Compiled
-*.elc
-
-# Packaging
-.cask
+.DS_Store
+.DS_Store?
+*.*~
+Makefile~
+*.*#
+*.log
+schemas.xml
+*.bash
+*.xar
