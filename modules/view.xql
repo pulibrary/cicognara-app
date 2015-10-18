@@ -13,6 +13,7 @@ import module namespace templates="http://exist-db.org/xquery/templates" ;
  :)
 import module namespace config="http://library.princeton.edu/cicognara-app/config" at "config.xqm";
 import module namespace app="http://library.princeton.edu/cicognara-app/templates" at "app.xql";
+import module namespace catalog="http://library.princeton.edu/cicognara-app/catalog" at "catalog.xqm";
 
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 
