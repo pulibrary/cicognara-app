@@ -23,20 +23,20 @@
         </head>
     </xsl:template>
     <xsl:template match="tei:list[@type='catalog']">
-        <ol>
+        <ol class="catalog">
             <xsl:apply-templates/>
         </ol>
     </xsl:template>
     <xsl:template match="tei:item">
         <li>
-            <div>
-                <xsl:apply-templates/>
-            </div>
+            <xsl:apply-templates/>
         </li>
     </xsl:template>
     <xsl:template match="tei:label">
         <head>
-            <xsl:apply-templates/>
+            <span class="ciconum">
+                <xsl:apply-templates/>
+            </span>
         </head>
     </xsl:template>
     <xsl:template match="tei:bibl">
@@ -48,5 +48,10 @@
         <p class="note">
             <xsl:apply-templates/>
         </p>
+    </xsl:template>
+    <xsl:template match="tei:title">
+        <span class="title">
+            <xsl:apply-templates/>
+        </span>
     </xsl:template>
 </xsl:stylesheet>

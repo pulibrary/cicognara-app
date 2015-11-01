@@ -1,3 +1,35 @@
 /* Application styles could go here */
+@import url(https://fonts.googleapis.com/css?family=Gentium+Basic:400,400italic);
+@import url(https://fonts.googleapis.com/css?family=Tangerine);
+
+
+body {
+    font-family: 'Gentium Basic', serif;
+
+}
 footer .poweredby { float: right; margin: 33px 10px 0 0;}
 footer .poweredby img { width: 120px; }
+
+#toc {
+    font-size: small;
+}
+
+p.note {
+    font-size: smaller;
+}
+
+span.title {
+    font-style: italic;
+}
+
+ol.catalog {
+    list-style-type:none;
+}
+
+span.ciconum {
+    font-weight: bold;
+   }
+   
+h1,h2 {
+        font-family: 'Tangerine', cursive;
+}
