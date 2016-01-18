@@ -10,5 +10,5 @@
     <target>cicognara-app</target>
     <prepare>pre-install.xql</prepare>
     <finish/>
-    <permissions user="cicognara" password="" group="cicognara" mode="rw-rw-r--"/>
+    <permissions xmlns:repo="http://exist-db.org/xquery/repo" password="" user="cicognara" group="cicognara" mode="rw-rw-r--"/>
 </meta>

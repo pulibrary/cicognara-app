@@ -13,5 +13,5 @@ declare option output:media-type "text/xml";
 
 declare variable $ciconum := request:get-parameter("ciconum", ());
 
-let $item := collection('/db/cicognara-data')//tei:item[@n = $ciconum]
+let $item := collection($config:data-root)//tei:item[@n = $ciconum]
 return $item

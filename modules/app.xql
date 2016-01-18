@@ -7,6 +7,7 @@ import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://library.princeton.edu/cicognara-app/config" at "config.xqm";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
+declare namespace marc="http://www.loc.gov/MARC21/slim";
 declare namespace output = "http://www.w3.org/2010/xslt-xquery-serialization";
 
 (:~
@@ -31,7 +32,80 @@ declare
 function app:ciconum($ciconum as xs:string)
 {
 
-let $item := collection('/db/cicognara-data')//tei:item[@n = $ciconum]
-return $item
 
+let $cr-item := collection($config:data-root)//tei:item [@n = $ciconum]
+let $marc    := collection($config:data-root)//marc:record[ft:query(./marc:datafield[@tag="533"]/marc:subfield[@code="f"], concat($ciconum, "*"))]
+let $rows    := collection($config:data-root)//row[ft:query(./Cico-Nr.___Original, concat($ciconum, "*"))]
+
+return 
+<result>
+    <cr-item>{ $cr-item }</cr-item>
+    <marc>{
+        for $rec in $marc return 
+        <rec>
+            <title>{ $rec/marc:datafield[@tag="245"] }</title>
+            <key>  { $rec/marc:datafield[@tag="533"]/marc:subfield[@code="f"] }</key>
+        </rec>
+    }</marc>
+    <master>{ for $row in $rows return $row }</master>
+</result>
+};
+
+declare
+    %rest:GET
+    %rest:path("master/{$ciconum}")
+function app:cicomaster($ciconum as xs:string)
+{
+let $row := collection($config:data-root)//row[./Cico-Nr. = $ciconum]
+return $row
+};
+
+declare
+    %rest:GET
+    %rest:path("marc/{$ciconum}")
+function app:cicomarc($ciconum as xs:string)
+{
+let $marc    := collection($config:data-root)//marc:record[ft:query(.//marc:subfield[@code="f"], concat($ciconum, "*"))]
+return $marc
+};
+
+declare
+    %templates:wrap
+function app:select($node as node(), $model as map(*), $keywords as xs:string?) 
+{
+    let $hits :=
+        if ($keywords) then
+            collection($config:data-root)//tei:item[ft:query(., $keywords)]
+        else 
+            ()
+    return map {
+    "keywords" : $keywords,    
+    "selected-items" : $hits
+    }
+};
+
+declare
+function app:hitcount($node as node(), $model as map(*))
+{
+    count($model("selected-items"))
+};
+
+declare
+function app:keywords($node as node(), $model as map(*))
+{
+    $model("keywords")
+};
+
+
+declare
+function app:list-selections($node as node(), $model as map(*))
+{
+    let $selected-items := $model("selected-items")
+    let $xsl := doc($config:app-root || "/resources/xsl/section.xsl")
+    return
+    <ol> {
+    for $item in $selected-items
+    return transform:transform($item, $xsl,())
+    } </ol>
+    
 };
