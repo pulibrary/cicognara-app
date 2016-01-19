@@ -109,3 +109,45 @@ function app:list-selections($node as node(), $model as map(*))
     } </ol>
     
 };
+
+declare
+function app:masterfile-display($node as node(), $model as map(*), $rownum as xs:string?)
+{
+    let $result :=
+    if ($rownum) then
+    let $row := doc($config:master-file)//row[./Cico-Nr. = $rownum]
+    return
+    <table class="table">
+    {
+        for $col in $row/*
+        return 
+        <tr>
+            <td>{ local-name($col) }</td>
+            <td>{ $col/text() }</td>
+        </tr>
+    }
+    </table>
+    else 
+    <table class="table">
+        <tr>
+            <th>Heidelberg Number</th>
+            <th>Microfilm Number</th>
+            <th>Title</th>
+        </tr>
+    {
+        let $rows := collection($config:data-root)//row
+        for $row at $count in 
+        subsequence($rows, 1, count($rows))
+        let $hnum := $row/Cico-Nr./text()
+        let $fnum := $row/Cico-Nr.___Original/text()
+        let $title := $row/Title/text()
+        return
+        <tr>
+            <td><a href="masterfile.html?rownum={$hnum}">{ $hnum }</a></td>
+            <td>{ $fnum }</td>            
+            <td>{ $title }</td>
+        </tr>
+    } </table>
+    
+    return $result
+};

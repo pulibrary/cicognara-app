@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<article xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div class="row-fluid">
+        <div class="col-md-4">
+            <h1>Select</h1>
+            <form action="">
+                <label for="keywords">Enter one or more keywords</label>
+                <input id="keywords" name="keywords"/>
+                <input type="submit" value="Search"/>
+            </form>
+        </div>
+        <div class="col-md-8" data-template="app:select">
+            <p>Found <span data-template="app:hitcount"/> hits for <span data-template="app:keywords"/>
+            </p>
+            <ol data-template="app:list-selections">
+                <li>
+                    <header>
+                        <span class="ciconum">3.</span>
+                    </header>
+                    <p>ALGAROTTI C. Francesco, Opere. Edizione novissima, Venezia 1791, vol. 17, in 8.</p>
+                    <p class="note">Collezione preziosa d’opere varie, lettere memorie e dissertazioni critiche in materia di letteratura e belle arti
+	  prodotta per cura de’ suoi eredi, a cui contribuì infinitamente nella scelta, direzione e collocazione di molti
+	  graziosi rami che la fregiano, il chiarissimo sig. dott. Francesco Aglietti.</p>
+                </li>
+                <li>
+                    <header>
+                        <span class="ciconum">4.</span>
+                    </header>
+                    <p>ANECDOTES des beaux arts, 3 vol. in 8, Paris 1766 1780, in 8.</p>
+                    <p class="note">Questa collezione di vari aneddoti sulle arti, quantunque ricavata indigestamente e senza buona critica da tutti i
+	  libri d’arte alla rinfusa, non cessa però di contenere molte cose utili e piacevoli in mezzo a molte falsità.</p>
+                </li>
+                <li>
+                    <header>
+                        <span class="ciconum">5.</span>
+                    </header>
+                    <p>BANNISTER Jacques, Tableau des arts et des sciences depuis le tems le plus reculé, jusque au
+	  siecle d’Alexandre le Grand, Paris 1789, in 12.</p>
+                    <p class="note">Quest’operetta è tradotta dall’inglese. Comincia dall’architettura e procede all’astronomia, alla favola, alla
+	  mitologia e filosofia morale e termina colla filosofia naturale.</p>
+                </li>
+            </ol>
+        </div>
+    </div>
+</article>
