@@ -33,6 +33,8 @@ declare variable $config:data-root := "/db/cicognara-data";
 
 declare variable $config:master-file := "/db/cicognara-data/master_file.xml";
 
+declare variable $config:marc-file   := "/db/cicognara-data/cicomarc.xml";
+
 declare variable $config:repo-descriptor := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
 declare variable $config:expath-descriptor := doc(concat($config:app-root, "/expath-pkg.xml"))/expath:package;

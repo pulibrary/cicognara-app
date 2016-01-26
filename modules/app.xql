@@ -151,3 +151,32 @@ function app:masterfile-display($node as node(), $model as map(*), $rownum as xs
     
     return $result
 };
+
+declare
+function app:marcfile-display($node as node(), $model as map(*), $rownum as xs:string?)
+{
+    let $marcfile := doc($config:marc-file)
+    let $marcrecs := $marcfile/marc:collection/marc:record
+    return
+        <table class="table">
+        <tr>
+            <th>title</th>
+            <th>ciconum</th>
+        </tr>
+        {
+            for $rec in $marcrecs
+            let $title     := $rec/marc:datafield[@tag='245']
+            let $cicofield := $rec/marc:datafield[@tag='776']/marc:subfield[@code='a']
+            let $ciconum   :=
+                if ($cicofield) then
+                    for $field in $cicofield return
+                    substring-after($field, 'The Cicognara Library ; ')
+                else ()
+            return
+                <tr>
+                    <td>{  $title  }</td>
+                    <td>{ $ciconum }</td>
+                </tr>
+        }
+        </table>
+};
