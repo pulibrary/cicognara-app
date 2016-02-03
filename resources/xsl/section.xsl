@@ -9,6 +9,7 @@
             <xd:p/>
         </xd:desc>
     </xd:doc>
+    <xsl:preserve-space elements="tei:date tei:title tei:pubPlace"/>
     <xsl:template match="tei:div[@type='section']">
         <article>
             <xsl:apply-templates/>
@@ -33,25 +34,43 @@
         </li>
     </xsl:template>
     <xsl:template match="tei:label">
-        <head>
-            <span class="ciconum">
-                <xsl:apply-templates/>
-            </span>
-        </head>
+        <span class="ciconum">
+            <xsl:apply-templates/>
+        </span>
     </xsl:template>
     <xsl:template match="tei:bibl">
-        <p>
+        <span class="bibl">
             <xsl:apply-templates/>
-        </p>
+        </span>
     </xsl:template>
     <xsl:template match="tei:note">
-        <p class="note">
+        <div class="note">
             <xsl:apply-templates/>
-        </p>
+        </div>
     </xsl:template>
     <xsl:template match="tei:title">
         <span class="title">
             <xsl:apply-templates/>
         </span>
+    </xsl:template>
+    <xsl:template match="tei:pubPlace">
+        <span class="pubPlace">
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+    <xsl:template match="tei:date">
+        <span class="date">
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+    <xsl:template match="tei:extent">
+        <span class="extent">
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+    <xsl:template match="tei:p">
+        <p>
+            <xsl:apply-templates/>
+        </p>
     </xsl:template>
 </xsl:stylesheet>

@@ -75,7 +75,7 @@ function app:select($node as node(), $model as map(*), $keywords as xs:string?)
 {
     let $hits :=
         if ($keywords) then
-            collection($config:data-root)//tei:item[ft:query(., $keywords)]
+            collection($config:data-root)//tei:list[@type='catalog']//tei:item[ft:query(., $keywords)]
         else 
             ()
     return map {
@@ -103,10 +103,13 @@ function app:list-selections($node as node(), $model as map(*))
     let $selected-items := $model("selected-items")
     let $xsl := doc($config:app-root || "/resources/xsl/section.xsl")
     return
+    if ($selected-items) then
+    
     <ol> {
     for $item in $selected-items
     return transform:transform($item, $xsl,())
     } </ol>
+    else ()
     
 };
 

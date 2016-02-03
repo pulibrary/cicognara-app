@@ -14,7 +14,7 @@ footer .poweredby img { width: 120px; }
     font-size: small;
 }
 
-p.note {
+div.note {
     font-size: smaller;
 }
 
@@ -26,9 +26,13 @@ ol.catalog {
     list-style-type:none;
 }
 
+ol.catalog li { margin: 0 0 6px 0; }
+
 span.ciconum {
     font-weight: bold;
+    padding-right: 5px; 
    }
+
    
 h1,h2 {
         font-family: 'Tangerine', cursive;
