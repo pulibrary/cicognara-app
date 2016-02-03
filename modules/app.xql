@@ -153,15 +153,15 @@ function app:masterfile-display($node as node(), $model as map(*), $rownum as xs
 };
 
 declare
-function app:marcfile-display($node as node(), $model as map(*), $rownum as xs:string?)
+function app:heidelberg-marcfile-display($node as node(), $model as map(*), $rownum as xs:string?)
 {
-    let $marcfile := doc($config:marc-file)
+    let $marcfile := doc($config:heidelberg-marc-file)
     let $marcrecs := $marcfile/marc:collection/marc:record
     return
         <table class="table">
         <tr>
-            <th>title</th>
             <th>ciconum</th>
+            <th>title</th>
         </tr>
         {
             for $rec in $marcrecs
@@ -174,8 +174,41 @@ function app:marcfile-display($node as node(), $model as map(*), $rownum as xs:s
                 else ()
             return
                 <tr>
-                    <td>{  $title  }</td>
                     <td>{ $ciconum }</td>
+                    <td>{  $title  }</td>
+                </tr>
+        }
+        </table>
+};
+
+declare
+function app:princeton-marcfile-display($node as node(), $model as map(*), $rownum as xs:string?)
+{
+    let $marcfile := doc($config:princeton-marc-file)
+    let $marcrecs := $marcfile/marc:collection/marc:record
+    return
+        <table class="table">
+        <tr>
+            <th>099$a</th>
+            <th>510$c</th>
+            <th>title</th>
+        </tr>
+        {
+            for $rec in $marcrecs
+            let $title     := $rec/marc:datafield[@tag='245']
+            let $cico1 := $rec/marc:datafield[@tag='099']/marc:subfield[@code='a']
+            let $ciconum-099   :=
+                if ($cico1) then
+                    for $field in $cico1 return
+                    substring-after($field, "49 no. ")
+                else ()
+                
+            let $ciconum-510 := $rec/marc:datafield[@tag='510' and marc:subfield[@code='a'] = 'Cicognara,']/marc:subfield[@code='c']
+            return
+                <tr>
+                    <td>{ $ciconum-099 }</td>
+                    <td>{ $ciconum-510 }</td>
+                    <td>{  $title  }</td>
                 </tr>
         }
         </table>
