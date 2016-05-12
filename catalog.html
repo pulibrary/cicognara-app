@@ -1,23 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="page-header">
-                <h1>Catalogo ragionato</h1>
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="col-md-4">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Volume 1<span class="caret"/>
+                            </a>
+                            <ul class="dropdown-menu" data-template="catalog:toc-1">
+                                <li>
+                                    <a href="princeton-marcfile.html">Princeton MARC File</a>
+                                </li>
+                                <li>
+                                    <a href="heidelberg-marcfile.html">Heidelberg MARC File</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Volume 2<span class="caret"/>
+                            </a>
+                            <ul class="dropdown-menu" data-template="catalog:toc-2">
+                                <li>
+                                    <a href="princeton-marcfile.html">Princeton MARC File</a>
+                                </li>
+                                <li>
+                                    <a href="heidelberg-marcfile.html">Heidelberg MARC File</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <form class="navbar-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="search"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">Search</button>
+                </form>
             </div>
         </div>
-    </div>
+    </nav>
     <div class="row-fluid">
-        <div class="col-md-4" id="toc"><!-- TOC -->
+        <div class="col-md-3" id="toc">
             <h2>Table of contents</h2>
             <ol data-template="catalog:toc">
                 <li>Lorem ipsum</li>
             </ol>
         </div>
-        <div class="col-md-8" data-template="catalog:section">
+        <div class="col-md-6" data-template="catalog:section">
             <article data-template="catalog:section-display">
                 <p>The section goes here.</p>
             </article>
         </div>
     </div>
-</article>
+</div>

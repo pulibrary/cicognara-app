@@ -1,7 +1,20 @@
-/* Application styles could go here */
+
 @import url(https://fonts.googleapis.com/css?family=Gentium+Basic:400,400italic);
 @import url(https://fonts.googleapis.com/css?family=Tangerine);
 
+
+/* For debugging and proofing*/
+span.bibl {
+    border: 1px dotted gray;
+}
+
+span.title {
+    background: rgb(255,255,235);
+}
+
+span.author {
+    background: rgb(235,255,255);    
+}
 
 body {
     font-family: 'Gentium Basic', serif;
@@ -35,5 +48,12 @@ span.ciconum {
 
    
 h1,h2 {
-        font-family: 'Tangerine', cursive;
+        font-family: 'Gentium Basic', serif;
+}
+
+.pageBreak{
+    margin: 10px 0 0 0;
+    padding: 10px 0;
+    border-top: 1px dotted #c5c5c5;
+    text-align: right;
 }

@@ -9,13 +9,18 @@
             <xd:p/>
         </xd:desc>
     </xd:doc>
-    <xsl:preserve-space elements="tei:date tei:title tei:pubPlace"/>
     <xsl:template match="tei:div[@type='section']">
-        <article>
+        <section>
             <xsl:apply-templates/>
-        </article>
+        </section>
     </xsl:template>
-    <xsl:template match="tei:pb"/>
+    <xsl:template match="tei:pb[@type='cico']">
+        <div class="pageBreak">
+            <span>
+                <xsl:value-of select="@n"/>
+            </span>
+        </div>
+    </xsl:template>
     <xsl:template match="tei:head">
         <head>
             <h2>
@@ -34,12 +39,22 @@
         </li>
     </xsl:template>
     <xsl:template match="tei:label">
-        <span class="ciconum">
-            <xsl:apply-templates/>
-        </span>
+        <xsl:variable name="ciconum">
+            <xsl:value-of select="parent::tei:item/@n"/>
+        </xsl:variable>
+        <a href="entry.html?ciconum={$ciconum}">
+            <span class="ciconum">
+                <xsl:apply-templates/>
+            </span>
+        </a>
     </xsl:template>
     <xsl:template match="tei:bibl">
         <span class="bibl">
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+    <xsl:template match="tei:author">
+        <span class="author">
             <xsl:apply-templates/>
         </span>
     </xsl:template>

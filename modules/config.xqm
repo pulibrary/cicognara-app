@@ -35,7 +35,10 @@ declare variable $config:master-file := "/db/cicognara-data/master_file.xml";
 
 declare variable $config:heidelberg-marc-file   := "/db/cicognara-data/cicomarc.xml";
 
-declare variable $config:princeton-marc-file   := "/db/cicognara-data/princeton-cico-marc.xml";
+declare variable $config:princeton-marc-file   := "/db/cicognara-data/cicognara.mrx.xml";
+
+declare variable $config:catalogo   := "/db/cicognara-data/catalogo/Catalogo_Cicognara.tei.xml";
+
 
 declare variable $config:repo-descriptor := doc(concat($config:app-root, "/repo.xml"))/repo:meta;
 
