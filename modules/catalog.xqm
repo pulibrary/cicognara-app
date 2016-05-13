@@ -39,15 +39,20 @@ declare function catalog:list-selections($node as node(), $model as map(*))
 as element()*
 {
     let $selections := $model("selected-items")
-    let $xsl := doc($config:app-root || "/resources/xsl/section.xsl")
+    let $selection-xsl := doc($config:app-root || "/resources/xsl/section.xsl")
+    let $marc-xsl := doc($config:app-root || "/resources/xsl/marc.xsl")
+    return
+    
     for $entry in $selections
-     let $chunk := transform:transform($entry, $xsl, ())
+     let $chunk := transform:transform($entry, $selection-xsl, ())
      let $marcrecs := catalog:_marc-by-ciconum($entry/@n)
 	 return 
-	   <table><tr>
-           <td>{ $chunk }</td>
-	       <td>{ $marcrecs }</td>
-	   </tr></table>
+	   <div class="row">
+	       <div class="col-md-4">{ $chunk }</div>
+	       <div class="col-md-8">{ transform:transform($marcrecs, $marc-xsl, ()) }</div>
+	   
+	   </div>
+	   
 };
 
 
